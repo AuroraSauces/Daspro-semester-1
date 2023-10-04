@@ -29,10 +29,10 @@ public class Pertemuan6latihan2 {
             System.out.println("Berapa buku Novel yang anda beli? ");
             banyakbuku = sc.nextInt();
 
-            if (banyakbuku > 2) {
-                distot = banyakbuku * 0.15; // Diskon 15% untuk pembelian lebih dari 2 buku Novel
+            if (banyakbuku > 3) {
+                distot = 7 + 2; // Diskon 15% untuk pembelian lebih dari 2 buku Novel
             } else {
-                distot = banyakbuku * 0.03; // Diskon 3% untuk pembelian 2 atau kurang buku Novel
+                distot = 7 + 1; // Diskon 3% untuk pembelian 2 atau kurang buku Novel
             }
 
             System.out.println("Diskon total Novel anda adalah " + distot);
@@ -41,9 +41,9 @@ public class Pertemuan6latihan2 {
             banyakbuku = sc.nextInt();
 
             if (banyakbuku > 2) {
-                distot = banyakbuku * 0.07; // Diskon 7% untuk pembelian lebih dari 2 buku jenis lain
+                distot = 5; // Diskon 7% untuk pembelian lebih dari 2 buku jenis lain
             } else {
-                distot = banyakbuku * 0.03; // Diskon 3% untuk pembelian 2 atau kurang buku jenis lain
+                distot = 0; // Diskon 3% untuk pembelian 2 atau kurang buku jenis lain
             }
 
             System.out.println("Diskon anda adalah " + distot);
