@@ -29,7 +29,16 @@ public class DasproProjekkelompokJobsheet3 {
         Bahasaindonesia = Nilai.nextInt();
 
         Nilaiakhir = (biologi+fisika+kimia+matematika+Bahasaindonesia+Bahasajepang+agama+Pjok+Bahasainggris)/9;
-        System.out.println("Nilai akhir " + Nilaiakhir);
-Nilai.close();
+        if (Nilaiakhir > 85){
+            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu A");
+        } else if (Nilaiakhir > 80 ){
+            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu B+");
+        } else if (Nilaiakhir > 75 ){
+            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu B");
+        } else if (Nilaiakhir > 70 ){
+            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu C");
+        } else 
+            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu D");
+        } 
+
     }    
-}
