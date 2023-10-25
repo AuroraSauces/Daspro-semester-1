@@ -32,6 +32,7 @@ public class Pemilihan2Percobaan326 {
             System.out.println("Penghasilan bersih : " + gajibersih);
         } else 
         System.out.println("masukan kategori salah");
+        noAbsen.close();
         }
     }
 

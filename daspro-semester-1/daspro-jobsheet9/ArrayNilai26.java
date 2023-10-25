@@ -16,6 +16,6 @@ public class ArrayNilai26 {
             } else {
                 System.out.println("Mahasiswa ke-"+i+" Tidak Lulus");
             }
-        }
+        } sc.close();
     }
 }

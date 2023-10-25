@@ -21,7 +21,6 @@ public class LatihanMandiriA {
             if (kelamin.equalsIgnoreCase("P"))
             System.out.println("Data " + nama +" "+ kelamin );
 
-        } 
-        sc.close(); 
+        }sc.close();
     } 
 }

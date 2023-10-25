@@ -28,6 +28,6 @@ public class DoWhileCuti26 {
             System.out.println("Ok selamat bekerja :)");
         }
     } while (konfirmasi.equalsIgnoreCase("y"));
-    
+    sc.close();
 }
 }
