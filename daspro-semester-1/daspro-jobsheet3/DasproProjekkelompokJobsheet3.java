@@ -3,42 +3,46 @@ import java.util.Scanner;
 public class DasproProjekkelompokJobsheet3 {
     public static void main(String[] args) {
         Scanner Nilai = new Scanner(System.in);
+        String[] namasiswa;
+        int[][] nilai;
+        int siswa;
+        String[] mataPelajaran = {
+            "Biologi", "Fisika", "Kimia", "Matematika", "Bahasa Inggris",
+            "Bahasa Jepang", "Agama", "PJOK", "Bahasa Indonesia"
+        };
 
-        String namasiswa;
-        int biologi,fisika,kimia,matematika,Bahasaindonesia,Bahasajepang,agama,Pjok,Bahasainggris,Nilaiakhir;
+        System.out.println("Masukkan jumlah siswa");
+        siswa = Nilai.nextInt();
+        namasiswa = new String[siswa];
+        nilai = new int[siswa][mataPelajaran.length];
 
-        System.out.println("Namamu");
-        namasiswa = Nilai.next();
-        System.out.println("biologi");
-        biologi = Nilai.nextInt();
-        System.out.println("Fisika");
-        fisika = Nilai.nextInt();
-        System.out.println("Kimia");
-        kimia = Nilai.nextInt();
-        System.out.println("Matematika");
-        matematika = Nilai.nextInt();
-        System.out.println("Bahasa inggris");
-        Bahasainggris = Nilai.nextInt();
-        System.out.println("Bahasa Jepang");
-        Bahasajepang = Nilai.nextInt();
-        System.out.println("agama");
-        agama = Nilai.nextInt();
-        System.out.println("Pjok");
-        Pjok = Nilai.nextInt();
-        System.out.println("Bahasaindonesia");
-        Bahasaindonesia = Nilai.nextInt();
+        for (int i = 0; i < siswa; i++) {
+            System.out.println("Nama");
+            namasiswa[i] = Nilai.next();
+            for (int j = 0; j < mataPelajaran.length; j++) {
+                System.out.println("Masukkan nilai " + mataPelajaran[j] + ":");
+                nilai[i][j] = Nilai.nextInt();
+            }
+        }
 
-        Nilaiakhir = (biologi+fisika+kimia+matematika+Bahasaindonesia+Bahasajepang+agama+Pjok+Bahasainggris)/9;
-        if (Nilaiakhir > 85){
-            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu A");
-        } else if (Nilaiakhir > 80 ){
-            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu B+");
-        } else if (Nilaiakhir > 75 ){
-            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu B");
-        } else if (Nilaiakhir > 70 ){
-            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu C");
-        } else 
-            System.out.println("Nilai akhir " + Nilaiakhir + " Nilai kamu D");
-        } 
+        for (int i = 0; i < siswa; i++) {
+            int sum = 0;
+            for (int j = 0; j < mataPelajaran.length; j++) {
+                sum += nilai[i][j];
+            }
+            int Nilaiakhir = sum / mataPelajaran.length;
 
-    }    
+            if (Nilaiakhir > 85) {
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu A");
+            } else if (Nilaiakhir > 80) {
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu B+");
+            } else if (Nilaiakhir > 75) {
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu B");
+            } else if (Nilaiakhir > 70) {
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu C");
+            } else {
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu D");
+            }
+        } Nilai.close();
+    } 
+}

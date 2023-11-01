@@ -30,7 +30,7 @@ public class WhileGaji26 {
             System.out.println("Jawaban invalid");
              i--;
              continue;
-            }totalgajilembur += gajilembur;
+            } totalgajilembur += gajilembur;
         } 
          System.out.println("Total gaji lembur: " + totalgajilembur );
          scan.close();
