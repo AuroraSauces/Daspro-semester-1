@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class DasproProjekkelompokJobsheet3 {
     public static void main(String[] args) {
-        Scanner Nilai = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        String Username,Password;
         String[] namasiswa;
         int[][] nilai;
         int siswa;
@@ -11,17 +12,24 @@ public class DasproProjekkelompokJobsheet3 {
             "Bahasa Jepang", "Agama", "PJOK", "Bahasa Indonesia"
         };
 
-        System.out.println("Masukkan jumlah siswa");
-        siswa = Nilai.nextInt();
+        System.out.println("Masukkan Username");
+        Username = sc.nextLine();
+        System.out.println("Masukkan Username");
+        Password = sc.nextLine();
+
+        if (Username.equalsIgnoreCase("Dosen") && Password.equalsIgnoreCase("Admin")){
+            System.out.println("Login Dosen Berhasil");
+             System.out.println("Masukkan jumlah siswa");
+        siswa = sc.nextInt();
         namasiswa = new String[siswa];
         nilai = new int[siswa][mataPelajaran.length];
 
         for (int i = 0; i < siswa; i++) {
             System.out.println("Nama");
-            namasiswa[i] = Nilai.next();
+            namasiswa[i] = sc.next();
             for (int j = 0; j < mataPelajaran.length; j++) {
                 System.out.println("Masukkan nilai " + mataPelajaran[j] + ":");
-                nilai[i][j] = Nilai.nextInt();
+                nilai[i][j] = sc.nextInt();
             }
         }
 
@@ -33,16 +41,32 @@ public class DasproProjekkelompokJobsheet3 {
             int Nilaiakhir = sum / mataPelajaran.length;
 
             if (Nilaiakhir > 85) {
-                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu A");
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai A");
             } else if (Nilaiakhir > 80) {
-                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu B+");
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai B+");
             } else if (Nilaiakhir > 75) {
-                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu B");
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai B");
             } else if (Nilaiakhir > 70) {
-                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu C");
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai C");
             } else {
-                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Nilaimu D");
+                System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai D");
             }
-        } Nilai.close();
+        }
+    } 
+    System.out.println("Apakah ingin kembali login? y/n");
+    String choice = sc.nextLine();
+
+    if (choice.equalsIgnoreCase("y")){
+        if (Username.equalsIgnoreCase("[i]") && Password.equalsIgnoreCase("ketu1")){
+            System.out.println("Berikut adalah nilai dari kelas kamu :");
+            System.out.println(namasiswa[i]) + ;
+
+    }
+}
+    
+    
+    
+    
+    sc.close();
     } 
 }
