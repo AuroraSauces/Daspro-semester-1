@@ -4,96 +4,132 @@ public class Draft {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String Username, Password;
-        String[] namasiswa = null;
-        int[][] nilai = null;
-        int siswa = 0;
+        String[][] kelas = {
+                {"1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1I"},
+        };
         String[] mataPelajaran = {
-            "Biologi", "Fisika", "Kimia", "Matematika", "Bahasa Inggris",
-            "Bahasa Jepang", "Agama", "PJOK", "Bahasa Indonesia"
+                "Daspro", "prakdaspro", "pkn", "matematika", "ctps", "k3", "bahasa inggris", "kti"
         };
 
         boolean continueLogin = true;
+        int[][] nilaiSiswa = new int[kelas.length][];
 
         while (continueLogin) {
-            System.out.println("Masukkan Username");
+            System.out.print("Masukkan Username : ");
             Username = sc.nextLine();
-            System.out.println("Masukkan Password");
+            System.out.print("Masukkan Password :");
             Password = sc.nextLine();
 
             if (Username.equalsIgnoreCase("Dosen") && Password.equalsIgnoreCase("Admin")) {
                 System.out.println("Login Dosen Berhasil");
-                System.out.println("Masukkan jumlah siswa");
-                siswa = sc.nextInt();
-                sc.nextLine();
+                System.out.println("======================================");
 
-                if (namasiswa == null) {
-                    namasiswa = new String[siswa];
-                    nilai = new int[siswa][mataPelajaran.length];
-                }
+                while (true) {  // Loop untuk memungkinkan pengisian kelas lebih dari satu kali
+                    System.out.println("Pilih tindakan:");
+                    System.out.println("1. Isi Nilai Mahasiswa");
+                    System.out.println("2. Lihat Nilai Setiap Kelas");
+                    System.out.println("3. Keluar");
+                    System.out.print("Masukkan pilihan: ");
+                    byte pilihan = sc.nextByte();
+                    sc.nextLine(); // Membersihkan buffer masukan setelah nextByte
 
-                for (int i = 0; i < siswa; i++) {
-                    System.out.println("Nama Mahasiswa " + (i + 1) + ":");
-                    namasiswa[i] = sc.nextLine();
-                    for (int j = 0; j < mataPelajaran.length; j++) {
-                        System.out.println("Masukkan nilai " + mataPelajaran[j] + ":");
-                        nilai[i][j] = sc.nextInt();
+                    switch (pilihan) {
+                        case 1:
+                            // Implementasi pengisian nilai
+                            System.out.println("Pilih tingkat");
+                            System.out.println("1. Tingkat 1");
+                            System.out.print("Masukkan Tingkat : ");
+                            byte pilihTingkat = sc.nextByte();
+                            sc.nextLine(); // Membersihkan buffer masukan setelah nextByte
+
+                            if (pilihTingkat >= 1 && pilihTingkat <= kelas.length) {
+                                for (int i = 0; i < kelas[pilihTingkat - 1].length; i++) {
+                                    System.out.print(kelas[pilihTingkat - 1][i] + " ");
+                                }
+                                System.out.println("\nPilih kelas : ");
+                                String kelasTerpilih = sc.nextLine();
+
+                                if (isValidKelas(kelasTerpilih, kelas[pilihTingkat - 1])) {
+                                    System.out.println("Masukkan jumlah mahasiswa : ");
+                                    int mhsw = sc.nextInt();
+                                    sc.nextLine(); // Membersihkan buffer masukan setelah nextInt()
+
+                                    nilaiSiswa[pilihTingkat - 1] = new int[mhsw];
+
+                                    for (int i = 0; i < mhsw; i++) {
+                                        System.out.println("Masukkan nama mahasiswa " + (i + 1) + " : ");
+                                        String namaSiswa = sc.nextLine();
+                                        int totalNilai = 0;
+
+                                        for (int j = 0; j < mataPelajaran.length; j++) {
+                                            System.out.println("Masukkan nilai " + mataPelajaran[j] + " untuk " + namaSiswa + " : ");
+                                            int nilai = sc.nextInt();
+                                            sc.nextLine(); // Membersihkan buffer masukan setelah nextInt()
+                                            totalNilai += nilai;
+                                        }
+
+                                        // Simpan total nilai ke dalam array nilaiSiswa
+                                        nilaiSiswa[pilihTingkat - 1][i] = totalNilai;
+                                    }
+
+                                    System.out.println("Pengisian nilai selesai.");
+                                } else {
+                                    System.out.println("Kelas tidak valid.");
+                                }
+                            } else {
+                                System.out.println("Tingkat tidak valid.");
+                            }
+                            break;
+
+                        case 2:
+                            // Menampilkan nilai setiap kelas
+                            System.out.println("Nilai Setiap Kelas:");
+                            for (int i = 0; i < kelas.length; i++) {
+                                System.out.println("Tingkat " + (i + 1));
+                                for (int j = 0; j < kelas[i].length; j++) {
+                                    System.out.println("Kelas " + kelas[i][j] + ":");
+                                    // Tampilkan nilai mahasiswa untuk kelas ini (jika ada)
+                                    if (nilaiSiswa[i] != null) {
+                                        for (int k = 0; k < nilaiSiswa[i].length; k++) {
+                                            System.out.println("Nama mahasiswa " + (k + 1) + ": " + sc.nextLine());
+                                            System.out.println("Total Nilai: " + nilaiSiswa[i][k]);
+                                        }
+                                    } else {
+                                        System.out.println("Belum ada data nilai untuk kelas ini.");
+                                    }
+                                    System.out.println("------------------------------");
+                                }
+                            }
+                            break;
+
+                        case 3:
+                            System.out.println("Keluar dari program.");
+                            continueLogin = false;
+                            break;
+
+                        default:
+                            System.out.println("Pilihan tidak valid.");
+                            break;
                     }
-                    sc.nextLine();
-                }
 
-                for (int i = 0; i < siswa; i++) {
-                    int sum = 0;
-                    for (int j = 0; j < mataPelajaran.length; j++) {
-                        sum += nilai[i][j];
+                    if (pilihan == 3) {
+                        break; // Keluar dari loop utama jika dosen memilih untuk keluar
                     }
-                    int Nilaiakhir = sum / mataPelajaran.length;
-
-                    if (Nilaiakhir > 85) {
-                        System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai A");
-                    } else if (Nilaiakhir > 80) {
-                        System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai B+");
-                    } else if (Nilaiakhir > 75) {
-                        System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai B");
-                    } else if (Nilaiakhir > 70) {
-                        System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai C");
-                    } else {
-                        System.out.println(namasiswa[i] + ": Nilai akhir " + Nilaiakhir + " Bernilai D");
-                    }
-                }
-            } else if (Username.equalsIgnoreCase("Mahasiswa") || Username.equalsIgnoreCase("Mahasiswa2") &&
-                    Password.equalsIgnoreCase("Ketu")) {
-                boolean found = false;
-
-                for (int i = 0; i < siswa; i++) {
-                    if (namasiswa[i].equalsIgnoreCase(Username)) {
-                        found = true;
-                        int sum = 0;
-                        for (int j = 0; j < mataPelajaran.length; j++) {
-                            sum += nilai[i][j];
-                        }
-                        int Nilaiakhir = sum / mataPelajaran.length;
-
-                        System.out.println("Berikut adalah nilai dari kelas kamu:");
-                        System.out.println("Nilai akhir mahasiswa adalah " + Nilaiakhir);
-                        break;
-                    }
-                }
-                
-                if (!found) {
-                    System.out.println("Mahasiswa dengan username '" + Username + "' tidak ditemukan.");
                 }
             } else {
-                System.out.println("Login gagal. Username atau password salah.");
-            }
-
-            System.out.println("Mau kembali ke login? y/n");
-            String kembali = sc.nextLine();
-
-            if (kembali.equalsIgnoreCase("n")) {
-                continueLogin = false;
+                System.out.println("Login Gagal. Silakan coba lagi.");
             }
         }
 
         sc.close();
+    }
+
+    private static boolean isValidKelas(String kelasTerpilih, String[] kelas) {
+        for (String k : kelas) {
+            if (k.equalsIgnoreCase(kelasTerpilih)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
