@@ -18,6 +18,6 @@ public class kubus26 {
         System.out.println("volume kubus :" + volume);
         luaspermukaan = luaspermukaan(sisi);
         System.out.println("Luas permukaan : " + luaspermukaan);
-        
+        sc.close();
     }
 }
